@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'Gameplay';
-  src: url('../../assets/font/Gameplay.ttf') format('truetype');
+  font-family: "Gameplay";
+  src: url("../../assets/font/Gameplay.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'helloHoney';
-  src: url('../../assets/font/helloHoney.otf') format('truetype');
+  font-family: "helloHoney";
+  src: url("../../assets/font/helloHoney.otf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -15,31 +15,35 @@
     display: flex;
     justify-content: center;
     margin: -60px auto;
-
   }
   &--user {
-   position: absolute;
-   right: 0;
-   top: 0;
-   display: flex;
-   align-items: center;
-   &-name{
-    font-family: 'Gameplay', sans-serif;
-    font-size: 25px;
-    color: #EE3EC9;
-    text-shadow: 1px -2px #79ffa0;
-   };
-   &>h1 {
-    width: 100px;
-   }
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    &-name {
+      font-family: "Gameplay", sans-serif;
+      font-size: 25px;
+      color: #ee3ec9;
+      text-shadow: 1px -2px #79ffa0;
+    }
+    & > h1 {
+      width: 100px;
+    }
   }
 }
 .week {
   width: 60%;
   margin: 0 auto;
-  &--day{
-    font-family: 'Gameplay', sans-serif;
-    color: #EE3EC9;
+  &--day {
+    font-family: "Gameplay", sans-serif;
+    color: #ee3ec9;
+    &-accordion {
+      color: #ee3ec9;
 
+      background: rgba(254, 251, 255, 0) !important;
+      border: blueviolet 2px solid;
+    };
   };
 };

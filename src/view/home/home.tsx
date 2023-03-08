@@ -25,7 +25,7 @@ const Home = () => {
       </div>
       <div className="week">
         <div className="week--day">
-          <Accordion className="week--day-monday">
+          <Accordion className="week--day-accordion">
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
@@ -41,7 +41,7 @@ const Home = () => {
           </Accordion>
         </div>
         <div className="week--day">
-          <Accordion className="week--day-tuesday">
+        <Accordion className="week--day-accordion">
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
@@ -59,7 +59,7 @@ const Home = () => {
           </Accordion>
         </div>
         <div className="week--day">
-          <Accordion className="week--day-wednesday">
+        <Accordion className="week--day-accordion">
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
@@ -77,7 +77,7 @@ const Home = () => {
           </Accordion>
         </div>
         <div className="week--day">
-          <Accordion className="week--day-thursday">
+        <Accordion className="week--day-accordion">
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
@@ -95,7 +95,7 @@ const Home = () => {
           </Accordion>
         </div>
         <div className="week--day">
-          <Accordion className="week--day-friday">
+        <Accordion className="week--day-accordion">
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
@@ -113,7 +113,7 @@ const Home = () => {
           </Accordion>
         </div>
         <div className="week--day">
-          <Accordion className="week--day-saturday">
+        <Accordion className="week--day-accordion">
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
@@ -131,7 +131,7 @@ const Home = () => {
           </Accordion>
         </div>
         <div className="week--day">
-          <Accordion className="week--day-sunday">
+        <Accordion className="week--day-accordion">
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
