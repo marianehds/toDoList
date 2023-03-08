@@ -19,6 +19,8 @@ const Login = () => {
       setInvalidName(true);
     } else {
       navigate("/home");
+      localStorage.setItem('user', JSON.stringify(name));
+
     }
   }
   return (

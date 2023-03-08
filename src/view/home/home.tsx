@@ -2,24 +2,25 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Icon,
-  IconButton,
   Typography,
 } from "@mui/material";
-import { Alarm, ExpandMore } from "@mui/icons-material";
+import { ExpandMore } from "@mui/icons-material";
 import React from "react";
 import Button from "@mui/material/Button";
 import "./Home.scss";
 import month from "../../assets/img/month.png";
+import Avatar from "../profile/Avatar.tsx";
 
 const Home = () => {
+  const TesteDoCaralho = localStorage.getItem('user')?.replace(/[\\"]/g, '')
+    
   return (
     <>
       <div className="header">
         <img className="header--month" src={month} alt="escrita Month" />
         <div className="header--user">
-          <p className="header--user-name">name lastname</p>
-          <Alarm fontSize="large" className="header--user-icon" />
+          <p className="header--user-name">{TesteDoCaralho}</p>
+          <Avatar />
         </div>
       </div>
       <div className="week">
