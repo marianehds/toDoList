@@ -1,153 +1,80 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+// import {
+//   Accordion,
+//   AccordionDetails,
+//   AccordionSummary,
+//   Typography,
+// } from "@mui/material";
 import React from "react";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import "./Home.scss";
+import {
+  Card,
+  CardContent,
+  Grid,
+  Paper,
+  Typography,
+  createSvgIcon,
+} from "@mui/material";
 // import month from "../../assets/img/month.png";
 // import Avatar from "../profile/Avatar";
 
 const Home = () => {
-  const TesteDoCaralho = localStorage.getItem('user')?.replace(/[\\"]/g, '')
-    
+  const userName = localStorage.getItem("user")?.replace(/[\\"]/g, "");
+
+  const PlusIcon = createSvgIcon(
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="h-6 w-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 4.5v15m7.5-7.5h-15"
+      />
+    </svg>,
+    "Plus"
+  );
   return (
     <>
       <div className="header">
         {/* <img className="header--month" src={month} alt="escrita Month" /> */}
         <div className="header--user">
-          <p className="header--user-name">{TesteDoCaralho}</p>
+          <p className="header--user-name">{userName}</p>
           {/* <Avatar /> */}
         </div>
       </div>
       <div className="week">
-        <div className="week--day">
-          <Accordion className="week--day-accordion">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Segunda</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div>
-                <Button> aa </Button>
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="week--day">
-        <Accordion className="week--day-accordion">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Terça</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="week--day">
-        <Accordion className="week--day-accordion">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Quarta</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="week--day">
-        <Accordion className="week--day-accordion">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Quinta</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="week--day">
-        <Accordion className="week--day-accordion">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Sexta</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="week--day">
-        <Accordion className="week--day-accordion">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Sabado</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-        <div className="week--day">
-        <Accordion className="week--day-accordion">
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Domingo</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </div>
+        <Grid display={"flex"} flexDirection={"row"}>
+          <Grid item width={300}>
+            <Card className="card-toDo">
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 18 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  To do
+                </Typography>
+                <Paper className="task-card" variant="outlined">
+                  default variant
+                </Paper>
+                <span>
+                  <PlusIcon />
+                </span>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item width={300}>
+            b
+          </Grid>
+          <Grid item width={300}>
+            c
+          </Grid>
+        </Grid>
       </div>
     </>
   );

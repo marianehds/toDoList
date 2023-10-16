@@ -11,6 +11,8 @@
   font-style: normal;
 }
 .header {
+  margin-top: 10%;
+
   &--month {
     display: flex;
     justify-content: center;
@@ -18,7 +20,7 @@
   }
   &--user {
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 0;
     display: flex;
     align-items: center;
@@ -33,6 +35,14 @@
     }
   }
 }
+
+.card-toDo{
+  min-height: 60vh;
+  .task-card {
+    border: 1px solid rgb(238 62 201) !important;
+    padding: 10px;
+  }
+}
 .week {
   width: 60%;
   margin: 0 auto;
@@ -44,6 +54,6 @@
 
       background: rgba(254, 251, 255, 0) !important;
       border: blueviolet 2px solid;
-    };
-  };
-};
+    }
+  }
+}
