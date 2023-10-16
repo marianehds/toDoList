@@ -8,8 +8,8 @@ import { ExpandMore } from "@mui/icons-material";
 import React from "react";
 import Button from "@mui/material/Button";
 import "./Home.scss";
-import month from "../../assets/img/month.png";
-import Avatar from "../profile/Avatar.tsx";
+// import month from "../../assets/img/month.png";
+// import Avatar from "../profile/Avatar";
 
 const Home = () => {
   const TesteDoCaralho = localStorage.getItem('user')?.replace(/[\\"]/g, '')
@@ -17,10 +17,10 @@ const Home = () => {
   return (
     <>
       <div className="header">
-        <img className="header--month" src={month} alt="escrita Month" />
+        {/* <img className="header--month" src={month} alt="escrita Month" /> */}
         <div className="header--user">
           <p className="header--user-name">{TesteDoCaralho}</p>
-          <Avatar />
+          {/* <Avatar /> */}
         </div>
       </div>
       <div className="week">
