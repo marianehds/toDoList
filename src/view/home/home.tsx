@@ -6,9 +6,9 @@ import {
   Card,
   CardContent,
   Grid,
-  Input,
   Modal,
   Paper,
+  TextField,
   Typography,
   createSvgIcon,
 } from "@mui/material";
@@ -37,6 +37,7 @@ type TTask = {
 const Home = () => {
   const userName = localStorage.getItem("user")?.replace(/[\\"]/g, "");
   const [modalAddTask, setModalAddTask] = useState(false);
+  const [invalidTitle, setInvalidTitle] = useState(false);
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [task, setTask] = useState<TTask>({});
 
@@ -59,8 +60,13 @@ const Home = () => {
   );
 
   const handleClickModal = () => {
-    setTasks([...tasks, task]);
-    setModalAddTask(false);
+    if (task.title === undefined) {
+      setInvalidTitle(true);
+    } else {
+      console.log(task.title);
+      setTasks([...tasks, task]);
+      setModalAddTask(false);
+    }
   };
 
   return (
@@ -71,104 +77,118 @@ const Home = () => {
           {/* <Avatar /> */}
         </div>
       </div>
-        <Grid display={"flex"} flexDirection={"row"} className="cardsTaskList">
-          <Grid item >
-            <Card className="card-toDo">
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 18 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  To do
-                </Typography>
+      <Grid display={"flex"} flexDirection={"row"} className="cardsTaskList">
+        <Grid item>
+          <Card className="card-toDo">
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 18 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                To do
+              </Typography>
 
-                {tasks.map((item, key) => {
-                  return (
-                    <Paper className="task-card" variant="outlined" key={key}>
-                      {item.title}
-                    </Paper>
-                  );
-                })}
-                <span onClick={() => setModalAddTask(true)}>
-                  <PlusIcon />
-                </span>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item >
-            <Card className="card-toDo">
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 18 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  In progress
-                </Typography>
-
-                {/* {tasks.map((item, key) => {
-                  return (
-                    <Paper className="task-card" variant="outlined" key={key}>
-                      {item.title}
-                    </Paper>
-                  );
-                })} */}
-                <span onClick={() => setModalAddTask(true)}>
-                  <PlusIcon />
-                </span>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item >
-            <Card className="card-toDo">
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 18 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Done
-                </Typography>
-
-                {/* {tasks.map((item, key) => {
-                  return (
-                    <Paper className="task-card" variant="outlined" key={key}>
-                      {item.title}
-                    </Paper>
-                  );
-                })} */}
-                <span onClick={() => setModalAddTask(true)}>
-                  <PlusIcon />
-                </span>
-              </CardContent>
-            </Card>
-          </Grid>
+              {tasks.map((item, key) => {
+                return (
+                  <Paper className="task-card" variant="outlined" key={key}>
+                    {item.title}
+                  </Paper>
+                );
+              })}
+              <span onClick={() => setModalAddTask(true)}>
+                <PlusIcon />
+              </span>
+            </CardContent>
+          </Card>
         </Grid>
-        <Modal open={modalAddTask} onClose={() => setModalAddTask(false)}>
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              New card To Do:
-            </Typography>
-            <Input
-              name="title"
-              color="secondary"
-              fullWidth
-              onChange={(e) =>
-                setTask({ ...task, [e.target.name]: e.target.value })
-              }
-            />
-            <div style={{}}>
-              <Button color="secondary" onClick={() => setModalAddTask(false)}>
-                Cancelar
-              </Button>
-              <Button color="secondary" onClick={() => handleClickModal()}>
-                Confirmar
-              </Button>
-            </div>
-          </Box>
-        </Modal>
-    
+        <Grid item>
+          <Card className="card-toDo">
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 18 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                In progress
+              </Typography>
+
+              {/* {tasks.map((item, key) => {
+                  return (
+                    <Paper className="task-card" variant="outlined" key={key}>
+                      {item.title}
+                    </Paper>
+                  );
+                })} */}
+              <span onClick={() => setModalAddTask(true)}>
+                <PlusIcon />
+              </span>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item>
+          <Card className="card-toDo">
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 18 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                Done
+              </Typography>
+
+              {/* {tasks.map((item, key) => {
+                  return (
+                    <Paper className="task-card" variant="outlined" key={key}>
+                      {item.title}
+                    </Paper>
+                  );
+                })} */}
+              <span onClick={() => setModalAddTask(true)}>
+                <PlusIcon />
+              </span>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+      <Modal open={modalAddTask} onClose={() => setModalAddTask(false)}>
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            New card To Do:
+          </Typography>
+          <TextField
+            name="title"
+            color="secondary"
+            size="small"
+            label="Title"
+            error={invalidTitle}
+            helperText={invalidTitle ? "The title is required" : ""}
+            fullWidth
+            onChange={(e) => {
+              setTask({ ...task, [e.target.name]: e.target.value });
+              setInvalidTitle(false);
+            }}
+          />
+          <TextField
+            name="description"
+            color="secondary"
+            variant="outlined"
+            label="Description"
+            fullWidth
+            onChange={(e) =>
+              setTask({ ...task, [e.target.name]: e.target.value })
+            }
+          />
+          <div>
+            <Button color="secondary" onClick={() => setModalAddTask(false)}>
+              Cancelar
+            </Button>
+            <Button color="secondary" onClick={() => handleClickModal()}>
+              Confirmar
+            </Button>
+          </div>
+        </Box>
+      </Modal>
     </>
   );
 };
