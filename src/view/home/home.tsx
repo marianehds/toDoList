@@ -60,6 +60,7 @@ const Home = () => {
 
   const handleClickModal = () => {
     setTasks([...tasks, task]);
+    setModalAddTask(false);
   };
 
   return (
@@ -70,9 +71,8 @@ const Home = () => {
           {/* <Avatar /> */}
         </div>
       </div>
-      <div className="week">
-        <Grid display={"flex"} flexDirection={"row"}>
-          <Grid item width={300}>
+        <Grid display={"flex"} flexDirection={"row"} className="cardsTaskList">
+          <Grid item >
             <Card className="card-toDo">
               <CardContent>
                 <Typography
@@ -85,11 +85,7 @@ const Home = () => {
 
                 {tasks.map((item, key) => {
                   return (
-                    <Paper
-                      className="task-card"
-                      variant="outlined"
-                      key={key}
-                    >
+                    <Paper className="task-card" variant="outlined" key={key}>
                       {item.title}
                     </Paper>
                   );
@@ -100,11 +96,53 @@ const Home = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item width={300}>
-            b
+          <Grid item >
+            <Card className="card-toDo">
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 18 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  In progress
+                </Typography>
+
+                {/* {tasks.map((item, key) => {
+                  return (
+                    <Paper className="task-card" variant="outlined" key={key}>
+                      {item.title}
+                    </Paper>
+                  );
+                })} */}
+                <span onClick={() => setModalAddTask(true)}>
+                  <PlusIcon />
+                </span>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item width={300}>
-            c
+          <Grid item >
+            <Card className="card-toDo">
+              <CardContent>
+                <Typography
+                  sx={{ fontSize: 18 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Done
+                </Typography>
+
+                {/* {tasks.map((item, key) => {
+                  return (
+                    <Paper className="task-card" variant="outlined" key={key}>
+                      {item.title}
+                    </Paper>
+                  );
+                })} */}
+                <span onClick={() => setModalAddTask(true)}>
+                  <PlusIcon />
+                </span>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
         <Modal open={modalAddTask} onClose={() => setModalAddTask(false)}>
@@ -130,7 +168,7 @@ const Home = () => {
             </div>
           </Box>
         </Modal>
-      </div>
+    
     </>
   );
 };
