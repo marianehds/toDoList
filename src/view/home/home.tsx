@@ -1,26 +1,36 @@
-// import {
-//   Accordion,
-//   AccordionDetails,
-//   AccordionSummary,
-//   Typography,
-// } from "@mui/material";
-import React from "react";
-// import Button from "@mui/material/Button";
+
+import React, { useState } from "react";
 import "./Home.scss";
 import {
+  Box,
   Card,
   CardContent,
   Grid,
+  Input,
+  Modal,
   Paper,
   Typography,
   createSvgIcon,
 } from "@mui/material";
-// import month from "../../assets/img/month.png";
 // import Avatar from "../profile/Avatar";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  p: 4,
+  border: "2px solid #771f64b5",
+  borderRadius: "25px",
+  boxShadow:
+    "0px 11px 15px -7px #771f64, 1px 5px 12px 8px #771f6473 0px 9px 46px 8px rgba(0, 0, 0, 0.12)",
+};
 
 const Home = () => {
   const userName = localStorage.getItem("user")?.replace(/[\\"]/g, "");
-
+  const [modalAddTask, setModalAddTask] = useState(false);
   const PlusIcon = createSvgIcon(
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +51,6 @@ const Home = () => {
   return (
     <>
       <div className="header">
-        {/* <img className="header--month" src={month} alt="escrita Month" /> */}
         <div className="header--user">
           <p className="header--user-name">{userName}</p>
           {/* <Avatar /> */}
@@ -62,7 +71,7 @@ const Home = () => {
                 <Paper className="task-card" variant="outlined">
                   default variant
                 </Paper>
-                <span>
+                <span onClick={() => setModalAddTask(true)}>
                   <PlusIcon />
                 </span>
               </CardContent>
@@ -75,6 +84,14 @@ const Home = () => {
             c
           </Grid>
         </Grid>
+        <Modal open={modalAddTask} onClose={() => setModalAddTask(false)}>
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              New card To Do:
+            </Typography>
+            <Input color="secondary" fullWidth />
+          </Box>
+        </Modal>
       </div>
     </>
   );
