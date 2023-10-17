@@ -1,7 +1,6 @@
-import { BigHead, eyesMap } from "@bigheads/core";
-import { Button, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { BigHead } from "@bigheads/core";
+import React from "react";
+
 import "./Avatar.scss";
 
 const Avatar = () => {
