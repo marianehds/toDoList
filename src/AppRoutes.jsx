@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React from "react";
-import Login from "./view/login/Login.tsx";
-import Home from "./view/home/Home.tsx";
+import Login from "./view/login/login.tsx";
+import Home from "./view/home/home.tsx";
 
 const AppRoutes = () => {
 return (

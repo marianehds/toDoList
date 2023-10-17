@@ -15,8 +15,10 @@ const Login = () => {
     localStorage.setItem("reduxName", JSON.stringify(name));
   }, [name]);
 
-  const [invalidNome, setInvalidNome] = useState(false);
-  const [nome, setNome] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    valid: false,
+  });
   const dispatch = useDispatch();
 
   function handleSubmit(event) {
@@ -24,23 +26,23 @@ const Login = () => {
   }
 
   function handleLogin() {
-    if (nome === "") {
-      setInvalidNome(true);
+    if (form.name === "") {
+      setForm({ ...form, valid: true });
     } else {
-      dispatch(changeUser(nome));
+      dispatch(changeUser(form));
       navigate("/home");
     }
   }
   return (
     <form className="form" onSubmit={handleSubmit}>
       <TextField
-        value={nome}
+        value={form.name}
         id="standard-basic"
         label="Seu nome aqui"
         variant="standard"
-        error={invalidNome}
-        onChange={(e) => (setNome(e.target.value), setInvalidNome(false))}
-        helperText={invalidNome ? "Por favor, insira o seu nome" : ""}
+        error={form.valid}
+        onChange={(e) => setForm({ name: e.target.value, valid: false })}
+        helperText={form.valid ? "Por favor, insira o seu nome" : ""}
         size="medium"
         color="secondary"
       />
