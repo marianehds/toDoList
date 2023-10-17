@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeUser, selectUser } from "../core/redux/userSlice";
 
 import { Button, TextField } from "@mui/material";
-import "./Login.scss";
+import "./login.scss";
 
 const Login = () => {
   const navigate = useNavigate();

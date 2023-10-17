@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Home.scss";
+import "./home.scss";
 import {
   Box,
   Button,
