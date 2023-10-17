@@ -12,7 +12,6 @@ import {
   Typography,
   createSvgIcon,
 } from "@mui/material";
-// import Avatar from "../profile/Avatar";
 
 const style = {
   position: "absolute",
@@ -92,7 +91,10 @@ const Home = () => {
               {tasks.map((item, key) => {
                 return (
                   <Paper className="task-card" variant="outlined" key={key}>
-                    <Typography fontSize={20} fontWeight={500}> {item.title}</Typography>
+                    <Typography fontSize={20} fontWeight={500}>
+                      {" "}
+                      {item.title}
+                    </Typography>
                     <Typography fontSize={14}> {item.description}</Typography>
                   </Paper>
                 );

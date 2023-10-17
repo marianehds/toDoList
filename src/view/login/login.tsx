@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { changeUser, selectUser } from "../core/redux/userSlice";
+import { changeUser, selectUser } from "../../core/redux/userSlice";
 
 import { Button, TextField } from "@mui/material";
 import "./login.scss";
