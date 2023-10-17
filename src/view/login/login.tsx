@@ -21,18 +21,18 @@ const Login = () => {
   });
   const dispatch = useDispatch();
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-  }
+  };
 
-  function handleLogin() {
+  const handleLogin = () => {
     if (form.name === "") {
       setForm({ ...form, valid: true });
     } else {
       dispatch(changeUser(form));
       navigate("/home");
     }
-  }
+  };
   return (
     <form className="form" onSubmit={handleSubmit}>
       <TextField
