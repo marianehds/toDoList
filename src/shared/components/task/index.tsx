@@ -1,5 +1,8 @@
-import { Paper, Typography } from "@mui/material";
 import React from "react";
+
+import { Paper, Typography } from "@mui/material";
+import "./task.scss";
+
 
 type TTask = {
   key: number;
@@ -9,10 +12,10 @@ type TTask = {
 
 export const Task = ({ key, title, description }: TTask) => {
   return (
-    <section data-page="a">
+    <section data-page="paper-task">
       <Paper className="task-card" variant="outlined" key={key}>
         <Typography fontSize={20} fontWeight={500}>
-          {" "}
+          
           {title}
         </Typography>
         <Typography fontSize={14}> {description}</Typography>
@@ -21,5 +24,4 @@ export const Task = ({ key, title, description }: TTask) => {
   );
 };
 
-export default Task
-
+export default Task;
