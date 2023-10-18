@@ -21,9 +21,9 @@ const Login = () => {
   });
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  // };
 
   const handleLogin = () => {
     if (form.name === "") {
@@ -34,7 +34,9 @@ const Login = () => {
     }
   };
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form" 
+    // onSubmit={handleSubmit}
+    >
       <TextField
         value={form.name}
         id="standard-basic"
