@@ -1,34 +1,16 @@
 import React, { useState } from "react";
 import "./home.scss";
 import {
-  Box,
-  Button,
   Card,
   CardContent,
   Grid,
-  Modal,
-  TextField,
   Typography,
   createSvgIcon,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../core/redux/userSlice";
 
-import { Task } from "../../shared/components/index";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  p: 4,
-  border: "2px solid #771f64b5",
-  borderRadius: "25px",
-  boxShadow:
-    "0px 11px 15px -7px #771f64, 1px 5px 12px 8px #771f6473 0px 9px 46px 8px rgba(0, 0, 0, 0.12)",
-};
+import { ModalNewTask, Task } from "../../shared/components/index";
 
 type TTask = {
   title?: string;
@@ -157,44 +139,21 @@ const Home = () => {
           </Card>
         </Grid>
       </Grid>
-      <Modal open={modalAddTask} onClose={() => setModalAddTask(false)}>
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            New card To Do:
-          </Typography>
-          <TextField
-            name="title"
-            color="secondary"
-            size="small"
-            label="Title"
-            error={invalidTitle}
-            helperText={invalidTitle ? "The title is required" : ""}
-            fullWidth
-            onChange={(e) => {
-              setTask({ ...task, [e.target.name]: e.target.value });
-              setInvalidTitle(false);
-            }}
-          />
-          <TextField
-            name="description"
-            color="secondary"
-            variant="outlined"
-            label="Description"
-            fullWidth
-            onChange={(e) =>
-              setTask({ ...task, [e.target.name]: e.target.value })
-            }
-          />
-          <div>
-            <Button color="secondary" onClick={() => setModalAddTask(false)}>
-              Cancelar
-            </Button>
-            <Button color="secondary" onClick={() => handleClickModal()}>
-              Confirmar
-            </Button>
-          </div>
-        </Box>
-      </Modal>
+
+      <ModalNewTask
+        open={modalAddTask}
+        close={() => setModalAddTask(false)}
+        error={invalidTitle}
+        onChangeTitle={(e) => {
+          setTask({ ...task, [e.target.name]: e.target.value });
+          setInvalidTitle(false);
+        }}
+        onChangeDescription={(e) =>
+          setTask({ ...task, [e.target.name]: e.target.value })
+        }
+        onClickCancel={() => setModalAddTask(false)}
+        onClickConfirm={() => handleClickModal()}
+      />
     </>
   );
 };
