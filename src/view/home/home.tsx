@@ -12,6 +12,8 @@ import {
   Typography,
   createSvgIcon,
 } from "@mui/material";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../core/redux/userSlice";
 
 const style = {
   position: "absolute",
@@ -34,7 +36,10 @@ type TTask = {
 };
 
 const Home = () => {
-  const userName = localStorage.getItem("user")?.replace(/[\\"]/g, "");
+  const { name } = useSelector(selectUser);
+
+  // const user = localStorage.getItem("user")?.replace(/[\\"]/g, "");
+
   const [modalAddTask, setModalAddTask] = useState(false);
   const [invalidTitle, setInvalidTitle] = useState(false);
   const [tasks, setTasks] = useState<TTask[]>([]);
@@ -62,7 +67,6 @@ const Home = () => {
     if (task.title === undefined) {
       setInvalidTitle(true);
     } else {
-      console.log(task.title);
       setTasks([...tasks, task]);
       setModalAddTask(false);
     }
@@ -72,7 +76,7 @@ const Home = () => {
     <>
       <div className="header">
         <div className="header--user">
-          <p className="header--user-name">{userName}</p>
+          <p className="header--user-name">{name}</p>
           {/* <Avatar /> */}
         </div>
       </div>

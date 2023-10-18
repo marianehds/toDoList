@@ -1,27 +1,21 @@
-import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { changeUser, selectUser } from "../../core/redux/userSlice";
-import useLogin from "../../shared/hooks/useLogin";
+import { useDispatch } from "react-redux";
+import { changeUser } from "../../core/redux/userSlice";
 
 import { Button, TextField } from "@mui/material";
 import "./login.scss";
 
 const Login = () => {
-  // const navigate = useNavigate();
-  // const { name } = useSelector(selectUser);
-
-  useEffect(() => {
-    localStorage.setItem("reduxName", JSON.stringify(name));
-  }, [name]);
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: "",
     valid: false,
   });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -31,10 +25,11 @@ const Login = () => {
     if (form.name === "") {
       setForm({ ...form, valid: true });
     } else {
-      useLogin(form);
+      dispatch(changeUser(form.name));
+      navigate("/home");
     }
   };
-  
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <TextField

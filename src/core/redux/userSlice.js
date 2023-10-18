@@ -8,9 +8,11 @@ export const slice = createSlice({
   },
   reducers: {
     changeUser(state, { payload }) {
+      localStorage.setItem("user", JSON.stringify(payload));
       return { ...state, isLogged: true, name: payload };
     },
     logout(state) {
+      localStorage.removeItem("user");
       return { ...state, isLogged: false, name: "" };
     },
   },
