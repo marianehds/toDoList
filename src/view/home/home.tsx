@@ -67,20 +67,20 @@ const Home = () => {
       <Grid display={"flex"} flexDirection={"row"} className="cardsTaskList">
         <Grid item>
           <Card className="card-toDo">
+            <Typography
+              sx={{
+                fontSize: 22,
+                boxShadow: "0 4px 2px -2px #f3ebfa;",
+                borderRadius: "4px",
+                padding: "10px",
+                margin: "0px 10px;"
+              }}
+              color="text.secondary"
+              gutterBottom
+            >
+              To do
+            </Typography>
             <CardContent className="card-content">
-              <Typography
-                sx={{
-                  fontSize: 22,
-                  boxShadow: "0 4px 2px -2px #f3ebfa;",
-                  borderRadius: "4px",
-                  padding: " 0 10px",
-                }}
-                color="text.secondary"
-                gutterBottom
-              >
-                To do
-              </Typography>
-
               {tasks.map((item, key) => {
                 return (
                   <Task
