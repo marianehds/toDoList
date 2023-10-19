@@ -27,6 +27,7 @@ const Home = () => {
   const [invalidTitle, setInvalidTitle] = useState(false);
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [task, setTask] = useState<TTask>({});
+  const [statusNewTask, setStatusNewTask] = useState(1);
 
   const PlusIcon = createSvgIcon(
     <svg
@@ -68,7 +69,12 @@ const Home = () => {
           <Card className="card-toDo">
             <CardContent>
               <Typography
-                sx={{ fontSize: 18 }}
+                sx={{
+                  fontSize: 22,
+                  boxShadow: "0 4px 2px -2px #f3ebfa;",
+                  borderRadius: "4px",
+                  padding: " 0 10px",
+                }}
                 color="text.secondary"
                 gutterBottom
               >
@@ -84,17 +90,28 @@ const Home = () => {
                   />
                 );
               })}
-              <span onClick={() => setModalAddTask(true)}>
-                <PlusIcon />
-              </span>
             </CardContent>
+            <span
+              onClick={() => {
+                setModalAddTask(true);
+                setStatusNewTask(1);
+              }}
+              className="footer-card"
+            >
+              <PlusIcon />
+            </span>
           </Card>
         </Grid>
         <Grid item>
           <Card className="card-toDo">
             <CardContent>
               <Typography
-                sx={{ fontSize: 18 }}
+                sx={{
+                  fontSize: 22,
+                  boxShadow: "0 4px 2px -2px #f3ebfa;",
+                  borderRadius: "4px",
+                  padding: " 0 10px",
+                }}
                 color="text.secondary"
                 gutterBottom
               >
@@ -108,17 +125,28 @@ const Home = () => {
                     </Paper>
                   );
                 })} */}
-              <span onClick={() => setModalAddTask(true)}>
-                <PlusIcon />
-              </span>
             </CardContent>
+            <span
+              onClick={() => {
+                setModalAddTask(true);
+                setStatusNewTask(2);
+              }}
+              className="footer-card"
+            >
+              <PlusIcon />
+            </span>
           </Card>
         </Grid>
         <Grid item>
           <Card className="card-toDo">
             <CardContent>
               <Typography
-                sx={{ fontSize: 18 }}
+                sx={{
+                  fontSize: 22,
+                  boxShadow: "0 4px 2px -2px #f3ebfa;",
+                  borderRadius: "4px",
+                  padding: " 0 10px",
+                }}
                 color="text.secondary"
                 gutterBottom
               >
@@ -132,15 +160,22 @@ const Home = () => {
                     </Paper>
                   );
                 })} */}
-              <span onClick={() => setModalAddTask(true)}>
-                <PlusIcon />
-              </span>
             </CardContent>
+            <span
+              onClick={() => {
+                setModalAddTask(true);
+                setStatusNewTask(3);
+              }}
+              className="footer-card"
+            >
+              <PlusIcon />
+            </span>
           </Card>
         </Grid>
       </Grid>
 
       <ModalNewTask
+        status={statusNewTask}
         open={modalAddTask}
         close={() => setModalAddTask(false)}
         error={invalidTitle}
