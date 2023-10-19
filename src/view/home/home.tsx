@@ -67,7 +67,7 @@ const Home = () => {
       <Grid display={"flex"} flexDirection={"row"} className="cardsTaskList">
         <Grid item>
           <Card className="card-toDo">
-            <CardContent>
+            <CardContent className="card-content">
               <Typography
                 sx={{
                   fontSize: 22,

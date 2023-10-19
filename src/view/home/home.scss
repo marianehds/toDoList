@@ -45,9 +45,25 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .footer-card{
-      margin: 0 0 10px 13px;
+    .card-content {
+      overflow: auto;
+      &::-webkit-scrollbar-track {
+        background-color: #f4f4f4;
+      }
+      &::-webkit-scrollbar {
+        width: 6px;
+        background: #f4f4f4;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #dad7d7;
+      }
+    }
 
+    .footer-card {
+      box-shadow: 0 -4px 2px -2px #f3ebfa;
+      margin: 0px 10px;
+
+      padding: 10px;
     }
   }
   > div {
