@@ -1,10 +1,9 @@
 import React from "react";
 
 import { Modal, Box, Typography, TextField, Button } from "@mui/material";
-import "./modalNewTask.scss";
 
 type TModalNewTask = {
-  status?: number;
+  status: number;
   open: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   close?: any;
@@ -33,8 +32,17 @@ const style = {
     "0px 11px 15px -7px #771f64, 1px 5px 12px 8px #771f6473 0px 9px 46px 8px rgba(0, 0, 0, 0.12)",
 };
 
+interface MeuObjeto {
+  [key: number]: string;
+}
+const titleStatusNewTask: MeuObjeto = {
+  1: "New card To Do",
+  2: "New Card In progress",
+  3: "New Card Done",
+};
+
 export const ModalNewTask = ({
-  //   status,
+  status,
   open,
   close,
   error,
@@ -48,7 +56,7 @@ export const ModalNewTask = ({
       <Modal open={open} onClose={close}>
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            New card To Do:
+            {titleStatusNewTask[status]}
           </Typography>
           <TextField
             name="title"
