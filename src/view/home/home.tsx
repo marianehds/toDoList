@@ -20,8 +20,8 @@ type TTask = {
 
 const Home = () => {
   const { name } = useSelector(selectUser);
-
-  // const user = localStorage.getItem("user")?.replace(/[\\"]/g, "");
+  const userLocalStorage = localStorage.getItem("user")?.replace(/[\\"]/g, "");
+  //redundância de código apenas para fins de estudos
 
   const [modalAddTask, setModalAddTask] = useState(false);
   const [invalidTitle, setInvalidTitle] = useState(false);
@@ -60,7 +60,7 @@ const Home = () => {
     <>
       <div className="header">
         <div className="header--user">
-          <p className="header--user-name">{name}</p>
+          <p className="header--user-name">{name ? name : userLocalStorage}</p>
           {/* <Avatar /> */}
         </div>
       </div>
@@ -73,7 +73,7 @@ const Home = () => {
                 boxShadow: "0 4px 2px -2px #f3ebfa;",
                 borderRadius: "4px",
                 padding: "10px",
-                margin: "0px 10px;"
+                margin: "0px 10px;",
               }}
               color="text.secondary"
               gutterBottom

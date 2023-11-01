@@ -67,6 +67,7 @@ export const ModalNewTask = ({
             helperText={error ? "The title is required" : ""}
             fullWidth
             onChange={onChangeTitle}
+            style={{ marginBottom: "10px" }}
           />
           <TextField
             name="description"
