@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import "./home.scss";
-import {
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../core/redux/userSlice";
 
@@ -38,7 +33,12 @@ const Home = () => {
     } else {
       setTasks([...tasks, task]);
       setModalAddTask(false);
+      cleanModalFieldsModal();
     }
+  };
+
+  const cleanModalFieldsModal = () => {
+    setTask({});
   };
 
   return (
