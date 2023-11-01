@@ -10,14 +10,17 @@
     padding: 10px;
     transition: background-color 0.3s ease;
   }
+  .checked {
+    background-color: #eee1f9;
+  }
   .checkbox-task {
-    color: #d38fc5;;
+    color: #d38fc5;
     & > input:checked ~ svg {
       color: #d38fc5;
     }
   }
   :hover {
-    background-color: #f3ebfa;
+    background-color: #e7d0fb;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }

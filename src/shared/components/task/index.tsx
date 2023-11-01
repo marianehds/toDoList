@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Checkbox, Paper, Typography } from "@mui/material";
 import "./task.scss";
@@ -10,9 +10,17 @@ type TTask = {
 };
 
 export const Task = ({ key, title, description }: TTask) => {
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
+
+  const handleSectionClick = () => {
+    setIsCheckboxChecked(!isCheckboxChecked);
+  };
+
+  const taskClasses = isCheckboxChecked ? "task-card checked" : "task-card";
+
   return (
-    <section data-page="paper-task">
-      <Paper className="task-card" variant="outlined" key={key}>
+    <section data-page="paper-task" onClick={handleSectionClick}>
+      <Paper className={taskClasses} variant="outlined" key={key}>
         <div>
           <Typography fontSize={20} fontWeight={500}>
             {title}
@@ -20,7 +28,7 @@ export const Task = ({ key, title, description }: TTask) => {
 
           <Typography fontSize={14}> {description}</Typography>
         </div>
-        <Checkbox className="checkbox-task" />
+        <Checkbox className="checkbox-task" checked={isCheckboxChecked} />
       </Paper>
     </section>
   );
