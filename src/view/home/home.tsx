@@ -5,12 +5,13 @@ import {
   CardContent,
   Grid,
   Typography,
-  createSvgIcon,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../core/redux/userSlice";
 
 import { ModalNewTask, Task } from "../../shared/components/index";
+
+import { IoIosAdd } from "react-icons/io";
 
 type TTask = {
   title?: string;
@@ -30,24 +31,6 @@ const Home = () => {
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [task, setTask] = useState<TTask>({});
   const [statusNewTask, setStatusNewTask] = useState<TStatus>(1);
-
-  const PlusIcon = createSvgIcon(
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="h-6 w-6"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 4.5v15m7.5-7.5h-15"
-      />
-    </svg>,
-    "Plus"
-  );
 
   const handleClickModal = () => {
     if (task.title === undefined) {
@@ -100,7 +83,7 @@ const Home = () => {
               }}
               className="footer-card"
             >
-              <PlusIcon />
+              <IoIosAdd size={30} />
             </span>
           </Card>
         </Grid>
@@ -137,7 +120,7 @@ const Home = () => {
               }}
               className="footer-card"
             >
-              <PlusIcon />
+              <IoIosAdd size={30} />
             </span>
           </Card>
         </Grid>
@@ -174,7 +157,7 @@ const Home = () => {
               }}
               className="footer-card"
             >
-              <PlusIcon />
+              <IoIosAdd size={30} />
             </span>
           </Card>
         </Grid>
