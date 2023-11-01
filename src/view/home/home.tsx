@@ -76,14 +76,14 @@ const Home = () => {
                   />
                 ))}
             </CardContent>
-            <span
-              onClick={() => {
-                setModalAddTask(true);
-                setStatusNewTask(1);
-              }}
-              className="footer-card"
-            >
-              <IoIosAdd size={30} />
+            <span className="footer-card">
+              <IoIosAdd
+                size={30}
+                onClick={() => {
+                  setModalAddTask(true);
+                  setStatusNewTask(1);
+                }}
+              />
             </span>
           </Card>
         </Grid>
@@ -113,14 +113,14 @@ const Home = () => {
                   />
                 ))}
             </CardContent>
-            <span
-              onClick={() => {
-                setModalAddTask(true);
-                setStatusNewTask(2);
-              }}
-              className="footer-card"
-            >
-              <IoIosAdd size={30} />
+            <span className="footer-card">
+              <IoIosAdd
+                size={30}
+                onClick={() => {
+                  setModalAddTask(true);
+                  setStatusNewTask(2);
+                }}
+              />
             </span>
           </Card>
         </Grid>
@@ -150,14 +150,15 @@ const Home = () => {
                   />
                 ))}
             </CardContent>
-            <span
-              onClick={() => {
-                setModalAddTask(true);
-                setStatusNewTask(3);
-              }}
-              className="footer-card"
-            >
-              <IoIosAdd size={30} />
+            <span className="footer-card">
+              <IoIosAdd
+                size={30}
+                onClick={() => {
+                  setModalAddTask(true);
+                  setStatusNewTask(3);
+                }}
+                className="iconPlus"
+              />
             </span>
           </Card>
         </Grid>

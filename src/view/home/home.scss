@@ -4,15 +4,16 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "helloHoney";
   src: url("../../assets/font/helloHoney.otf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
+
 .header {
   margin-top: 10%;
-
   &--month {
     display: flex;
     justify-content: center;
@@ -38,14 +39,12 @@
 
 .cardsTaskList {
   justify-content: center;
-
   .card-toDo {
     position: relative;
     height: 60vh;
     margin: 10px;
     display: flex;
     flex-direction: column;
-
     .card-content {
       overflow: auto;
       &::-webkit-scrollbar-track {
@@ -59,19 +58,19 @@
         background: rgb(223 200 246);
       }
     }
-
     .footer-card {
       box-shadow: 0 -4px 2px -2px #f3ebfa;
       margin: 0px 10px;
-
       padding: 10px;
       position: absolute;
-      // height: 95%;
       bottom: 0;
       width: 100%;
       background-color: white;
       display: flex;
       flex-direction: column-reverse;
+      :hover {
+        cursor: pointer;
+      }
     }
   }
   > div {
@@ -80,14 +79,12 @@
 }
 
 .week {
-  // width: 60%;
   margin: 0 auto;
   &--day {
     font-family: "Gameplay", sans-serif;
     color: #ee3ec9;
     &-accordion {
       color: #ee3ec9;
-
       background: rgba(254, 251, 255, 0) !important;
       border: blueviolet 2px solid;
     }
