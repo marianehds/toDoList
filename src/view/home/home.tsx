@@ -15,8 +15,10 @@ import { ModalNewTask, Task } from "../../shared/components/index";
 type TTask = {
   title?: string;
   description?: string;
-  progress?: number;
+  progress?: 1 | 2 | 3;
 };
+
+type TStatus = 1 | 2 | 3;
 
 const Home = () => {
   const { name } = useSelector(selectUser);
@@ -27,7 +29,7 @@ const Home = () => {
   const [invalidTitle, setInvalidTitle] = useState(false);
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [task, setTask] = useState<TTask>({});
-  const [statusNewTask, setStatusNewTask] = useState(1);
+  const [statusNewTask, setStatusNewTask] = useState<TStatus>(1);
 
   const PlusIcon = createSvgIcon(
     <svg
@@ -81,15 +83,15 @@ const Home = () => {
               To do
             </Typography>
             <CardContent className="card-content">
-              {tasks.map((item, key) => {
-                return (
+              {tasks
+                .filter((item) => item.progress === 1)
+                .map((item, key) => (
                   <Task
                     key={key}
                     description={item?.description}
                     title={item.title}
                   />
-                );
-              })}
+                ))}
             </CardContent>
             <span
               onClick={() => {
@@ -104,27 +106,29 @@ const Home = () => {
         </Grid>
         <Grid item>
           <Card className="card-toDo">
+            <Typography
+              sx={{
+                fontSize: 22,
+                boxShadow: "0 4px 2px -2px #f3ebfa;",
+                borderRadius: "4px",
+                padding: "10px",
+                margin: "0px 10px;",
+              }}
+              color="text.secondary"
+              gutterBottom
+            >
+              In progress
+            </Typography>
             <CardContent>
-              <Typography
-                sx={{
-                  fontSize: 22,
-                  boxShadow: "0 4px 2px -2px #f3ebfa;",
-                  borderRadius: "4px",
-                  padding: " 0 10px",
-                }}
-                color="text.secondary"
-                gutterBottom
-              >
-                In progress
-              </Typography>
-
-              {/* {tasks.map((item, key) => {
-                  return (
-                    <Paper className="task-card" variant="outlined" key={key}>
-                      {item.title}
-                    </Paper>
-                  );
-                })} */}
+              {tasks
+                .filter((item) => item.progress === 2)
+                .map((item, key) => (
+                  <Task
+                    key={key}
+                    description={item?.description}
+                    title={item.title}
+                  />
+                ))}
             </CardContent>
             <span
               onClick={() => {
@@ -139,27 +143,29 @@ const Home = () => {
         </Grid>
         <Grid item>
           <Card className="card-toDo">
+            <Typography
+              sx={{
+                fontSize: 22,
+                boxShadow: "0 4px 2px -2px #f3ebfa;",
+                borderRadius: "4px",
+                padding: "10px",
+                margin: "0px 10px;",
+              }}
+              color="text.secondary"
+              gutterBottom
+            >
+              Done
+            </Typography>
             <CardContent>
-              <Typography
-                sx={{
-                  fontSize: 22,
-                  boxShadow: "0 4px 2px -2px #f3ebfa;",
-                  borderRadius: "4px",
-                  padding: " 0 10px",
-                }}
-                color="text.secondary"
-                gutterBottom
-              >
-                Done
-              </Typography>
-
-              {/* {tasks.map((item, key) => {
-                  return (
-                    <Paper className="task-card" variant="outlined" key={key}>
-                      {item.title}
-                    </Paper>
-                  );
-                })} */}
+              {tasks
+                .filter((item) => item.progress === 3)
+                .map((item, key) => (
+                  <Task
+                    key={key}
+                    description={item?.description}
+                    title={item.title}
+                  />
+                ))}
             </CardContent>
             <span
               onClick={() => {
@@ -180,7 +186,11 @@ const Home = () => {
         close={() => setModalAddTask(false)}
         error={invalidTitle}
         onChangeTitle={(e) => {
-          setTask({ ...task, [e.target.name]: e.target.value });
+          setTask({
+            ...task,
+            [e.target.name]: e.target.value,
+            progress: statusNewTask,
+          });
           setInvalidTitle(false);
         }}
         onChangeDescription={(e) =>
