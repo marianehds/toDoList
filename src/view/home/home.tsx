@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./home.scss";
 import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Menu } from "@mui/base/Menu";
+
 import { useSelector } from "react-redux";
 import { selectUser } from "../../core/redux/userSlice";
 
 import { ModalNewTask, Task } from "../../shared/components/index";
 
 import { IoIosAdd } from "react-icons/io";
+import { Dropdown, MenuItem } from "@mui/base";
+import { useNavigate } from "react-router";
 
 type TTask = {
   title?: string;
@@ -17,12 +21,15 @@ type TTask = {
 type TStatus = 1 | 2 | 3;
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const { name } = useSelector(selectUser);
   const userLocalStorage = localStorage.getItem("user")?.replace(/[\\"]/g, "");
   //redundância de código apenas para fins de estudos
 
   const [modalAddTask, setModalAddTask] = useState(false);
   const [invalidTitle, setInvalidTitle] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [task, setTask] = useState<TTask>({});
   const [statusNewTask, setStatusNewTask] = useState<TStatus>(1);
@@ -37,6 +44,11 @@ const Home = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   const cleanModalFieldsModal = () => {
     setTask({});
   };
@@ -45,7 +57,15 @@ const Home = () => {
     <>
       <div className="header">
         <div className="header--user">
-          <p className="header--user-name">{name ? name : userLocalStorage}</p>
+          <p className="header--user-name" onClick={() => setMenuOpen(!menuOpen)}>
+            {name ? name : userLocalStorage}
+          </p>
+          <Dropdown open={menuOpen}>
+            <Menu className="menuProfile">
+              <MenuItem>Perfil</MenuItem>
+              <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
+            </Menu>
+          </Dropdown>
           {/* <Avatar /> */}
         </div>
       </div>
