@@ -57,12 +57,15 @@ const Home = () => {
     <>
       <div className="header">
         <div className="header--user">
-          <p className="header--user-name" onClick={() => setMenuOpen(!menuOpen)}>
+          <p
+            className="header--user-name"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             {name ? name : userLocalStorage}
           </p>
           <Dropdown open={menuOpen}>
             <Menu className="menuProfile">
-              <MenuItem>Perfil</MenuItem>
+              <MenuItem onClick={() => navigate("/profile")}>Perfil</MenuItem>
               <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
             </Menu>
           </Dropdown>
