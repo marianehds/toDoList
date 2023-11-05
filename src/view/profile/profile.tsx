@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Avatar from "../../shared/avatar/avatar";
 import "./profile.scss";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { Button, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import TAvatar from "../../shared/avatar/avatar.type";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const userLocalStorage = localStorage.getItem("user")?.replace(/[\\"]/g, "");
 
   const [avatar, setAvatar] = useState<TAvatar>({});
@@ -42,6 +44,8 @@ const Profile = () => {
           onClick={() => setAvatar({ ...avatar, hair: "short" })}
         />
       </RadioGroup>
+
+      <Button onClick={() =>  navigate("/home")}> Voltar </Button>
     </section>
   );
 };

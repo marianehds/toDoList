@@ -69,7 +69,6 @@ const Home = () => {
               <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
             </Menu>
           </Dropdown>
-          {/* <Avatar /> */}
         </div>
       </div>
       <Grid display={"flex"} flexDirection={"row"} className="cardsTaskList">
