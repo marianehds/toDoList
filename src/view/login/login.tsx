@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <section data-page="login">
       <form className="form" onSubmit={handleSubmit}>
         <TextField
           value={form.name}
@@ -67,7 +67,7 @@ const Login = () => {
           setIsUserLogged(false);
         }}
       />
-    </>
+    </section>
   );
 };
 

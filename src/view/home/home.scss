@@ -12,103 +12,104 @@
   font-style: normal;
 }
 
-.header {
-  margin-top: 10%;
-  &--month {
-    display: flex;
-    justify-content: center;
-    margin: -60px auto;
-  }
-  &--user {
-    position: absolute;
-    right: 20px;
-    top: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    .menuProfile {
-      position: absolute;
-      top: 42px;
-      right: 5px;
-      ul {
-        background-color: #eee1f9;
-        padding: 0;
-        border-radius: 7px;
-        list-style: none;
-        border: 1px solid rgb(239, 195, 230);
-        :hover {
-          background-color: #e7d0fb;
-          cursor: pointer;
-          // transition: background-color 0.3s ease;
-        }
-        li{
-          padding: 10px;
-
-        }
-      }
-    }
-    &-name {
-      font-family: "Gameplay", sans-serif;
-      font-size: 25px;
-      color: #ee3ec9;
-      text-shadow: 1px -2px #79ffa0;
-    }
-    & > h1 {
-      width: 100px;
-    }
-  }
-}
-
-.cardsTaskList {
-  justify-content: center;
-  .card-toDo {
-    position: relative;
-    height: 60vh;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    .card-content {
-      overflow: auto;
-      &::-webkit-scrollbar-track {
-        background-color: #f3ebfa;
-      }
-      &::-webkit-scrollbar {
-        width: 6px;
-        background: #f4f4f4;
-      }
-      &::-webkit-scrollbar-thumb {
-        background: rgb(223 200 246);
-      }
-    }
-    .footer-card {
-      box-shadow: 0 -4px 2px -2px #f3ebfa;
-      margin: 0px 10px;
-      padding: 10px;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background-color: white;
+[data-page="home"] {
+  .header {
+    margin-top: 10%;
+    &--month {
       display: flex;
-      flex-direction: column-reverse;
-      :hover {
-        cursor: pointer;
+      justify-content: center;
+      margin: -60px auto;
+    }
+    &--user {
+      position: absolute;
+      right: 20px;
+      top: 0;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .menuProfile {
+        position: absolute;
+        top: 42px;
+        right: 5px;
+        ul {
+          background-color: #eee1f9;
+          padding: 0;
+          border-radius: 7px;
+          list-style: none;
+          border: 1px solid rgb(239, 195, 230);
+          :hover {
+            background-color: #e7d0fb;
+            cursor: pointer;
+            // transition: background-color 0.3s ease;
+          }
+          li {
+            padding: 10px;
+          }
+        }
+      }
+      &-name {
+        font-family: "Gameplay", sans-serif;
+        font-size: 25px;
+        color: #ee3ec9;
+        text-shadow: 1px -2px #79ffa0;
+      }
+      & > h1 {
+        width: 100px;
       }
     }
   }
-  > div {
-    width: 400px;
-  }
-}
 
-.week {
-  margin: 0 auto;
-  &--day {
-    font-family: "Gameplay", sans-serif;
-    color: #ee3ec9;
-    &-accordion {
+  .cardsTaskList {
+    justify-content: center;
+    .card-toDo {
+      position: relative;
+      height: 60vh;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      .card-content {
+        overflow: auto;
+        &::-webkit-scrollbar-track {
+          background-color: #f3ebfa;
+        }
+        &::-webkit-scrollbar {
+          width: 6px;
+          background: #f4f4f4;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: rgb(223 200 246);
+        }
+      }
+      .footer-card {
+        box-shadow: 0 -4px 2px -2px #f3ebfa;
+        margin: 0px 10px;
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column-reverse;
+        :hover {
+          cursor: pointer;
+        }
+      }
+    }
+    > div {
+      width: 400px;
+    }
+  }
+
+  .week {
+    margin: 0 auto;
+    &--day {
+      font-family: "Gameplay", sans-serif;
       color: #ee3ec9;
-      background: rgba(254, 251, 255, 0) !important;
-      border: blueviolet 2px solid;
+      &-accordion {
+        color: #ee3ec9;
+        background: rgba(254, 251, 255, 0) !important;
+        border: blueviolet 2px solid;
+      }
     }
   }
 }

@@ -54,7 +54,8 @@ const Home = () => {
   };
 
   return (
-    <>
+    <section data-page="home">
+
       <div className="header">
         <div className="header--user">
           <p
@@ -205,7 +206,7 @@ const Home = () => {
         onClickCancel={() => setModalAddTask(false)}
         onClickConfirm={() => handleClickModal()}
       />
-    </>
+    </section>
   );
 };
 
