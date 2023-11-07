@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Avatar from "../../shared/avatar/avatar";
 import "./profile.scss";
 import { Button, FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import TAvatar from "../../shared/avatar/avatar.type";
 import { useNavigate } from "react-router-dom";
 import { AvatarProps, hairMap } from "@bigheads/core";
 
@@ -10,7 +9,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const userLocalStorage = localStorage.getItem("user")?.replace(/[\\"]/g, "");
 
-  const [avatar, setAvatar] = useState<TAvatar>({});
+  const [avatar, setAvatar] = useState<AvatarProps>({});
 
   const hairMapKeys = Object.keys(hairMap);
   // const eyesMapKeys = Object.keys(eyesMap);

@@ -1,8 +1,6 @@
 import React from "react";
-import { BigHead } from "@bigheads/core";
-import TAvatar from "./avatar.type";
-
-const Avatar = ({ hair }: TAvatar) => {
+import { AvatarProps, BigHead } from "@bigheads/core";
+const Avatar = ({ hair }: AvatarProps) => {
   return (
     <div>
       <BigHead
