@@ -1,13 +1,17 @@
 import React from "react";
 import { AvatarProps, BigHead } from "@bigheads/core";
 const Avatar = ({ hair, mouth}: AvatarProps) => {
+
+  const userAvatarCustom = JSON.parse(localStorage.getItem("userAvatar") || "{}");
+  const hairToUse = userAvatarCustom.hair || "afro";
+  const mouthToUse = userAvatarCustom.mouth || "openSmile";
   return (
     <div>
       <BigHead
-        hair={hair ? hair : "afro"}
+        hair={hairToUse? hairToUse : hair }
         hairColor="black"
         eyes="content"
-        mouth={mouth ? mouth : "openSmile"}
+        mouth={mouthToUse ? mouthToUse : mouth}
         accessory="none"
         body="chest"
         circleColor="blue"

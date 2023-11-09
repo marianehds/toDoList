@@ -11,6 +11,7 @@ import { ModalNewTask, Task } from "../../shared/components/index";
 import { IoIosAdd } from "react-icons/io";
 import { Dropdown, MenuItem } from "@mui/base";
 import { useNavigate } from "react-router";
+import Avatar from "../../shared/avatar/avatar";
 
 type TTask = {
   title?: string;
@@ -55,9 +56,11 @@ const Home = () => {
 
   return (
     <section data-page="home">
-
       <div className="header">
         <div className="header--user">
+          <div className="avatar">
+            <Avatar />
+          </div>
           <p
             className="header--user-name"
             onClick={() => setMenuOpen(!menuOpen)}

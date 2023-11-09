@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "../../shared/avatar/avatar";
 import "./profile.scss";
 import { Button, FormControlLabel, Radio, RadioGroup } from "@mui/material";
@@ -10,6 +10,10 @@ const Profile = () => {
   const userLocalStorage = localStorage.getItem("user")?.replace(/[\\"]/g, "");
 
   const [avatarCustom, setAvatarCustom] = useState<AvatarProps>({});
+  
+  useEffect(() => {
+    localStorage.setItem('userAvatar', JSON.stringify(avatarCustom));
+  }, [avatarCustom]);
 
   const hairMapKeys = Object.keys(hairMap);
   const mouthsMapKeys = Object.keys(mouthsMap);
@@ -21,7 +25,7 @@ const Profile = () => {
   // const facialHairMap = Object.keys(facialHairMap);
   // const clothingMap = Object.keys(clothingMap);
   // const accessoryMap = Object.keys(accessoryMap);
-  // const hatMap = Object.keys(hatMap);
+  // const hatMap = Object.keys(hatMap);  
 
   return (
     <section data-page="profile">
