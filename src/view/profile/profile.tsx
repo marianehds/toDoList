@@ -3,29 +3,30 @@ import Avatar from "../../shared/avatar/avatar";
 import "./profile.scss";
 import { Button, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { AvatarProps, hairMap } from "@bigheads/core";
+import { AvatarProps, hairMap, mouthsMap } from "@bigheads/core";
 
 const Profile = () => {
   const navigate = useNavigate();
   const userLocalStorage = localStorage.getItem("user")?.replace(/[\\"]/g, "");
 
-  const [avatar, setAvatar] = useState<AvatarProps>({});
+  const [avatarCustom, setAvatarCustom] = useState<AvatarProps>({});
 
   const hairMapKeys = Object.keys(hairMap);
+  const mouthsMapKeys = Object.keys(mouthsMap);
+  // console.log(avatarCustom)
   // const eyesMapKeys = Object.keys(eyesMap);
+  // const mouthsMap = Object.keys(mouthsMap);
   // const eyebrowsMapKeys = Object.keys(eyebrowsMap);
-  // const hairMapKeys = Object.keys(mouthsMap);
-  // const hairMapKeys = Object.keys(facialHairMap);
-  // const hairMapKeys = Object.keys(clothingMap);
-  // const hairMapKeys = Object.keys(accessoryMap);
-  // const hairMapKeys = Object.keys(hatMap);
-  // const hairMapKeys = Object.keys(mouthsMap);
-  // const hairMapKeys = Object.keys(mouthsMap);
+  // const mouthsMap = Object.keys(mouthsMap);
+  // const facialHairMap = Object.keys(facialHairMap);
+  // const clothingMap = Object.keys(clothingMap);
+  // const accessoryMap = Object.keys(accessoryMap);
+  // const hatMap = Object.keys(hatMap);
 
   return (
     <section data-page="profile">
       <div className="avatar">
-        <Avatar hair={avatar.hair} />
+        <Avatar mouth={avatarCustom.mouth} hair={avatarCustom.hair} />
       </div>
       <p className="header--user-name">{userLocalStorage}</p>
 
@@ -36,18 +37,66 @@ const Profile = () => {
         name="radio-group-hair"
         style={{ display: "inline" }}
       >
-        {hairMapKeys.map((item) => (
+        {hairMapKeys.map((item, key) => (
           <FormControlLabel
-            key={item}
+            key={key}
             label={item}
             value={item}
             control={<Radio />}
             onClick={() =>
-              setAvatar({ ...avatar, hair: item as AvatarProps["hair"] })
+              setAvatarCustom({
+                ...avatarCustom,
+                hair: item as AvatarProps["hair"],
+              })
             }
           />
         ))}
       </RadioGroup>
+
+      <p>Mouth</p>
+      <RadioGroup
+        defaultValue="grin"
+        name="radio-group-mouth"
+        style={{ display: "inline" }}
+      >
+        {mouthsMapKeys.map((item, key) => (
+          <>
+            <FormControlLabel
+              key={key}
+              label={item}
+              value={item}
+              control={<Radio />}
+              onClick={() =>
+                setAvatarCustom({
+                  ...avatarCustom,
+                  mouth: item as AvatarProps["mouth"],
+                })
+              }
+            />
+          </>
+        ))}
+      </RadioGroup>
+
+      {/* <RadioGroup
+        defaultValue="normal"
+        name="radio-group-eyes"
+        style={{ display: "inline" }}
+      >
+        {eyesMapKeys.map((item) => (
+          <FormControlLabel
+            key={1}
+            label={item}
+            value={item}
+            control={<Radio />}
+            onClick={() =>
+              setAvatar({
+                ...avatar,
+                eyes: item as AvatarProps["eyes"],
+              })
+            }
+          />
+        ))}
+      </RadioGroup> */}
 
       <Button onClick={() => navigate("/home")}> Voltar </Button>
     </section>

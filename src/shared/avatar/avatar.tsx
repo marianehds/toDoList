@@ -1,13 +1,13 @@
 import React from "react";
 import { AvatarProps, BigHead } from "@bigheads/core";
-const Avatar = ({ hair }: AvatarProps) => {
+const Avatar = ({ hair, mouth}: AvatarProps) => {
   return (
     <div>
       <BigHead
-        hair={hair}
+        hair={hair ? hair : "afro"}
         hairColor="black"
         eyes="content"
-        mouth="lips"
+        mouth={mouth ? mouth : "openSmile"}
         accessory="none"
         body="chest"
         circleColor="blue"
