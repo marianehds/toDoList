@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AvatarProps, hairMap, mouthsMap } from "@bigheads/core";
+import { AvatarProps, eyebrowsMap, eyesMap, hairMap, mouthsMap } from "@bigheads/core";
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -25,13 +25,13 @@ const TabsCustomAvatar = () => {
 
   const hairMapKeys = Object.keys(hairMap);
   const mouthsMapKeys = Object.keys(mouthsMap);
-  // console.log(avatarCustom)
-  // const eyesMapKeys = Object.keys(eyesMap);
-  // const eyebrowsMapKeys = Object.keys(eyebrowsMap);
+  const eyesMapKeys = Object.keys(eyesMap);
+  const eyebrowsMapKeys = Object.keys(eyebrowsMap);
   // const facialHairMap = Object.keys(facialHairMap);
   // const clothingMap = Object.keys(clothingMap);
   // const accessoryMap = Object.keys(accessoryMap);
   // const hatMap = Object.keys(hatMap);
+  // console.log(avatarCustom)
 
   const propAvatarCustom: {
     [key: number]: JSX.Element;
@@ -88,13 +88,71 @@ const TabsCustomAvatar = () => {
         </RadioGroup>
       </>
     ),
-    3: <div>olhos</div>,
+    3: (
+      <>
+        <p>Eyes</p>
+        <RadioGroup
+          defaultValue="content"
+          name="radio-group-eyes"
+          style={{ display: "inline" }}
+        >
+          {eyesMapKeys.map((item, key) => (
+            <>
+              <FormControlLabel
+                key={key}
+                label={item}
+                value={item}
+                control={<Radio />}
+                onClick={() =>
+                  setAvatarCustom({
+                    ...avatarCustom,
+                    eyes: item as AvatarProps["eyes"],
+                  })
+                }
+              />
+            </>
+          ))}
+        </RadioGroup>
+      </>
+    ),
+    4: (
+      <>
+        <p>Eyes</p>
+        <RadioGroup
+          defaultValue="raised"
+          name="radio-group-eyes"
+          style={{ display: "inline" }}
+        >
+          {eyebrowsMapKeys.map((item, key) => (
+            <>
+              <FormControlLabel
+                key={key}
+                label={item}
+                value={item}
+                control={<Radio />}
+                onClick={() =>
+                  setAvatarCustom({
+                    ...avatarCustom,
+                    eyebrows: item as AvatarProps["eyebrows"],
+                  })
+                }
+              />
+            </>
+          ))}
+        </RadioGroup>
+      </>
+    ),
   };
 
   return (
     <section data-component="tabs-custom-avatar">
       <div className="avatar">
-        <Avatar mouth={avatarCustom.mouth} hair={avatarCustom.hair} />
+        <Avatar
+          mouth={avatarCustom.mouth}
+          hair={avatarCustom.hair}
+          eyes={avatarCustom.eyes}
+          eyebrows={avatarCustom.eyebrows}
+        />
       </div>
       <div className="ButtonsNavigation">
         <BottomNavigation
