@@ -40,7 +40,7 @@ export const ModalUserLogged = ({
       <Modal open={open} onClose={close}>
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Deseja continuar com o usuario {user} ?
+            Deseja continuar com o usuário {user} ?
           </Typography>
           <div>
             <Button
