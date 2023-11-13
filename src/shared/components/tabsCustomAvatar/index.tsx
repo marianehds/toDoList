@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { AvatarProps, eyebrowsMap, eyesMap, hairMap, mouthsMap } from "@bigheads/core";
+import {
+  AvatarProps,
+  eyebrowsMap,
+  eyesMap,
+  hairMap,
+  mouthsMap,
+} from "@bigheads/core";
 import {
   BottomNavigation,
   BottomNavigationAction,
+  Button,
   FormControlLabel,
   Radio,
   RadioGroup,
@@ -11,10 +18,6 @@ import Avatar from "../../avatar/avatar";
 import "./index.style.scss";
 
 const TabsCustomAvatar = () => {
-  //   interface MeuObjeto {
-  //     [key: number]: string;
-  //   }
-
   const [value, setValue] = React.useState(0);
 
   const [avatarCustom, setAvatarCustom] = useState<AvatarProps>({});
@@ -37,14 +40,35 @@ const TabsCustomAvatar = () => {
     [key: number]: JSX.Element;
   } = {
     1: (
-      <>
-        <p>Hair</p>
-        <RadioGroup
-          defaultValue="none"
-          name="radio-group-hair"
-          style={{ display: "inline" }}
-        >
-          {hairMapKeys.map((item, key) => (
+      <RadioGroup
+        defaultValue="none"
+        name="radio-group-hair"
+        style={{ display: "inline" }}
+      >
+        {hairMapKeys.map((item, key) => (
+          <FormControlLabel
+            key={key}
+            label={item}
+            value={item}
+            control={<Radio />}
+            onClick={() =>
+              setAvatarCustom({
+                ...avatarCustom,
+                hair: item as AvatarProps["hair"],
+              })
+            }
+          />
+        ))}
+      </RadioGroup>
+    ),
+    2: (
+      <RadioGroup
+        defaultValue="grin"
+        name="radio-group-mouth"
+        style={{ display: "inline" }}
+      >
+        {mouthsMapKeys.map((item, key) => (
+          <>
             <FormControlLabel
               key={key}
               label={item}
@@ -53,94 +77,61 @@ const TabsCustomAvatar = () => {
               onClick={() =>
                 setAvatarCustom({
                   ...avatarCustom,
-                  hair: item as AvatarProps["hair"],
+                  mouth: item as AvatarProps["mouth"],
                 })
               }
             />
-          ))}
-        </RadioGroup>
-      </>
-    ),
-    2: (
-      <>
-        <p>Mouth</p>
-        <RadioGroup
-          defaultValue="grin"
-          name="radio-group-mouth"
-          style={{ display: "inline" }}
-        >
-          {mouthsMapKeys.map((item, key) => (
-            <>
-              <FormControlLabel
-                key={key}
-                label={item}
-                value={item}
-                control={<Radio />}
-                onClick={() =>
-                  setAvatarCustom({
-                    ...avatarCustom,
-                    mouth: item as AvatarProps["mouth"],
-                  })
-                }
-              />
-            </>
-          ))}
-        </RadioGroup>
-      </>
+          </>
+        ))}
+      </RadioGroup>
     ),
     3: (
-      <>
-        <p>Eyes</p>
-        <RadioGroup
-          defaultValue="content"
-          name="radio-group-eyes"
-          style={{ display: "inline" }}
-        >
-          {eyesMapKeys.map((item, key) => (
-            <>
-              <FormControlLabel
-                key={key}
-                label={item}
-                value={item}
-                control={<Radio />}
-                onClick={() =>
-                  setAvatarCustom({
-                    ...avatarCustom,
-                    eyes: item as AvatarProps["eyes"],
-                  })
-                }
-              />
-            </>
-          ))}
-        </RadioGroup>
-      </>
+      <RadioGroup
+        defaultValue="content"
+        name="radio-group-eyes"
+        style={{ display: "inline" }}
+      >
+        {eyesMapKeys.map((item, key) => (
+          <>
+            <FormControlLabel
+              key={key}
+              label={item}
+              value={item}
+              control={<Radio />}
+              onClick={() =>
+                setAvatarCustom({
+                  ...avatarCustom,
+                  eyes: item as AvatarProps["eyes"],
+                })
+              }
+            />
+          </>
+        ))}
+      </RadioGroup>
     ),
     4: (
-      <>
-        <p>Eyes</p>
-        <RadioGroup
-          defaultValue="raised"
-          name="radio-group-eyes"
-          style={{ display: "inline" }}
-        >
-          {eyebrowsMapKeys.map((item, key) => (
-            <>
-              <FormControlLabel
-                key={key}
-                label={item}
-                value={item}
-                control={<Radio />}
-                onClick={() =>
-                  setAvatarCustom({
-                    ...avatarCustom,
-                    eyebrows: item as AvatarProps["eyebrows"],
-                  })
-                }
-              />
-            </>
-          ))}
-        </RadioGroup>
-      </>
+      <RadioGroup
+        defaultValue="raised"
+        name="radio-group-eyes"
+        style={{ display: "inline" }}
+      >
+        {eyebrowsMapKeys.map((item, key) => (
+          <>
+            <FormControlLabel
+              key={key}
+              label={item}
+              value={item}
+              control={<Radio />}
+              onClick={() =>
+                setAvatarCustom({
+                  ...avatarCustom,
+                  eyebrows: item as AvatarProps["eyebrows"],
+                })
+              }
+            />
+          </>
+        ))}
+      </RadioGroup>
     ),
   };
 
@@ -154,25 +145,39 @@ const TabsCustomAvatar = () => {
           eyebrows={avatarCustom.eyebrows}
         />
       </div>
-      <div className="ButtonsNavigation">
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(_event, newValue) => {
-            setValue(newValue);
-          }}
-        >
-          <BottomNavigationAction label="Hair" value={1} />
-          <BottomNavigationAction label="Mouth" value={2} />
-          <BottomNavigationAction label="Eyes" value={3} />
-          <BottomNavigationAction label="Eyebrows" value={4} />
-          <BottomNavigationAction label="FacialHair" value={5} />
-          <BottomNavigationAction label="Clothing" value={6} />
-          <BottomNavigationAction label="Accessory" value={7} />
-          <BottomNavigationAction label="Hat" value={8} />
-        </BottomNavigation>
-      </div>
-      {propAvatarCustom[value]}
+
+      {value === 0 && (
+        <Button color="secondary" size="large" onClick={() => setValue(1)}>
+          Edição do Avatar
+        </Button>
+      )}
+      {value > 0 && (
+        <>
+          <div className="ButtonsNavigation">
+            <BottomNavigation
+              showLabels
+              value={value}
+              onChange={(_event, newValue) => {
+                setValue(newValue);
+              }}
+            >
+              <BottomNavigationAction label="Hair" value={1} />
+              <BottomNavigationAction label="Mouth" value={2} />
+              <BottomNavigationAction label="Eyes" value={3} />
+              <BottomNavigationAction label="Eyebrows" value={4} />
+              <BottomNavigationAction label="FacialHair" value={5} />
+              <BottomNavigationAction label="Clothing" value={6} />
+              <BottomNavigationAction label="Accessory" value={7} />
+              <BottomNavigationAction label="Hat" value={8} />
+            </BottomNavigation>
+          </div>
+          {propAvatarCustom[value]}
+
+          <Button color="secondary" size="large" onClick={() => setValue(0)}>
+            Concluir
+          </Button>
+        </>
+      )}
     </section>
   );
 };
