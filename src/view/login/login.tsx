@@ -25,6 +25,12 @@ const Login = () => {
     event.preventDefault();
   };
 
+  const cleanUser = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("userAvatar");
+    setIsUserLogged(false);
+  };
+
   const handleLogin = () => {
     if (form.name === "") {
       setForm({ ...form, valid: true });
@@ -62,10 +68,7 @@ const Login = () => {
         user={userLocalStorage}
         open={isUserLogged}
         onClickConfirm={() => navigate("/home")}
-        onClickCancel={() => {
-          localStorage.removeItem("user");
-          setIsUserLogged(false);
-        }}
+        onClickCancel={() => cleanUser()}
       />
     </section>
   );
