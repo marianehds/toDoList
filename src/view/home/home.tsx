@@ -45,8 +45,13 @@ const Home = () => {
     }
   };
 
-  const handleLogout = () => {
+  const cleanUser = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("userAvatar");
+  };
+
+  const handleLogout = () => {
+    cleanUser()
     navigate("/");
   };
 
