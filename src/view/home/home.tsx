@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./home.scss";
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { Menu } from "@mui/base/Menu";
@@ -22,6 +22,26 @@ type TTask = {
 type TStatus = 1 | 2 | 3;
 
 const Home = () => {
+
+  useEffect(() => {
+    const storedTasksString = localStorage.getItem("userTasks");
+    const storedTasks: TTask[] = storedTasksString ? JSON.parse(storedTasksString) : [];
+    setTasks(storedTasks);
+  }, []);
+  
+  const handleClickModal = () => {
+    if (task.title === undefined) {
+      setInvalidTitle(true);
+    } else {
+      const updatedTasks = [...tasks, { ...task, progress: statusNewTask }];
+      setTasks(updatedTasks);
+      localStorage.setItem("userTasks", JSON.stringify(updatedTasks));
+
+      setModalAddTask(false);
+      cleanModalFieldsModal();
+    }
+  };
+
   const navigate = useNavigate();
 
   const { name } = useSelector(selectUser);
@@ -34,16 +54,6 @@ const Home = () => {
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [task, setTask] = useState<TTask>({});
   const [statusNewTask, setStatusNewTask] = useState<TStatus>(1);
-
-  const handleClickModal = () => {
-    if (task.title === undefined) {
-      setInvalidTitle(true);
-    } else {
-      setTasks([...tasks, task]);
-      setModalAddTask(false);
-      cleanModalFieldsModal();
-    }
-  };
 
   const cleanUser = () => {
     localStorage.removeItem("user");
