@@ -1,12 +1,13 @@
 import React from "react";
 import { AvatarProps, BigHead } from "@bigheads/core";
-const Avatar = ({ hair, mouth, eyes, eyebrows}: AvatarProps) => {
+const Avatar = ({ hair, mouth, eyes, eyebrows, facialHair}: AvatarProps) => {
 
   const userAvatarCustom = JSON.parse(localStorage.getItem("userAvatar") || "{}");
   const hairToUse = userAvatarCustom.hair || "afro";
   const mouthToUse = userAvatarCustom.mouth || "openSmile";
   const eyesToUse = userAvatarCustom.eyes || "content";
   const eyebrowsToUse = userAvatarCustom.eyebrows || "raised";
+  const facialHairToUse = userAvatarCustom.facialHair || "none";
   return (
     <div>
       <BigHead
@@ -15,12 +16,12 @@ const Avatar = ({ hair, mouth, eyes, eyebrows}: AvatarProps) => {
         eyes={eyesToUse ? eyesToUse : eyes }
         mouth={mouthToUse ? mouthToUse : mouth}
         eyebrows={eyebrowsToUse ? eyebrowsToUse : eyebrows}
+        facialHair={facialHairToUse ? facialHairToUse : facialHair}
         accessory="none"
         body="chest"
         circleColor="blue"
         clothing="tankTop"
         clothingColor="black"
-        facialHair="none"
         graphic="vue"
         hat="none"
         hatColor="green"

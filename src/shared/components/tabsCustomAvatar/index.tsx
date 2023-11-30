@@ -3,6 +3,7 @@ import {
   AvatarProps,
   eyebrowsMap,
   eyesMap,
+  facialHairMap,
   hairMap,
   mouthsMap,
 } from "@bigheads/core";
@@ -30,7 +31,7 @@ const TabsCustomAvatar = () => {
   const mouthsMapKeys = Object.keys(mouthsMap);
   const eyesMapKeys = Object.keys(eyesMap);
   const eyebrowsMapKeys = Object.keys(eyebrowsMap);
-  // const facialHairMap = Object.keys(facialHairMap);
+  const facialHairMapKeys = Object.keys(facialHairMap);
   // const clothingMap = Object.keys(clothingMap);
   // const accessoryMap = Object.keys(accessoryMap);
   // const hatMap = Object.keys(hatMap);
@@ -112,7 +113,7 @@ const TabsCustomAvatar = () => {
     4: (
       <RadioGroup
         defaultValue="raised"
-        name="radio-group-eyes"
+        name="radio-group-eyebrows"
         style={{ display: "inline" }}
       >
         {eyebrowsMapKeys.map((item, key) => (
@@ -133,6 +134,30 @@ const TabsCustomAvatar = () => {
         ))}
       </RadioGroup>
     ),
+    5: (
+      <RadioGroup
+        defaultValue="none"
+        name="radio-group-facialHair"
+        style={{ display: "inline" }}
+      >
+        {facialHairMapKeys.map((item, key) => (
+          <>
+            <FormControlLabel
+              key={key}
+              label={item}
+              value={item}
+              control={<Radio />}
+              onClick={() =>
+                setAvatarCustom({
+                  ...avatarCustom,
+                  facialHair: item as AvatarProps["facialHair"],
+                })
+              }
+            />
+          </>
+        ))}
+      </RadioGroup>
+    ),
   };
 
   return (
@@ -143,6 +168,7 @@ const TabsCustomAvatar = () => {
           hair={avatarCustom.hair}
           eyes={avatarCustom.eyes}
           eyebrows={avatarCustom.eyebrows}
+          facialHair={avatarCustom.facialHair}
         />
       </div>
 
