@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
   AvatarProps,
+  accessoryMap,
+  clothingMap,
   eyebrowsMap,
   eyesMap,
   facialHairMap,
@@ -32,10 +34,8 @@ const TabsCustomAvatar = () => {
   const eyesMapKeys = Object.keys(eyesMap);
   const eyebrowsMapKeys = Object.keys(eyebrowsMap);
   const facialHairMapKeys = Object.keys(facialHairMap);
-  // const clothingMap = Object.keys(clothingMap);
-  // const accessoryMap = Object.keys(accessoryMap);
-  // const hatMap = Object.keys(hatMap);
-  // console.log(avatarCustom)
+  const clothingMapKeys = Object.keys(clothingMap);
+  const accessoryMapKeys = Object.keys(accessoryMap);
 
   const propAvatarCustom: {
     [key: number]: JSX.Element;
@@ -158,6 +158,54 @@ const TabsCustomAvatar = () => {
         ))}
       </RadioGroup>
     ),
+    6: (
+      <RadioGroup
+        defaultValue="shirt"
+        name="radio-group-clothing"
+        style={{ display: "inline" }}
+      >
+        {clothingMapKeys.map((item, key) => (
+          <>
+            <FormControlLabel
+              key={key}
+              label={item}
+              value={item}
+              control={<Radio />}
+              onClick={() =>
+                setAvatarCustom({
+                  ...avatarCustom,
+                  clothing: item as AvatarProps["clothing"],
+                })
+              }
+            />
+          </>
+        ))}
+      </RadioGroup>
+    ),
+    7: (
+      <RadioGroup
+        defaultValue="none"
+        name="radio-group-clothing"
+        style={{ display: "inline" }}
+      >
+        {accessoryMapKeys.map((item, key) => (
+          <>
+            <FormControlLabel
+              key={key}
+              label={item}
+              value={item}
+              control={<Radio />}
+              onClick={() =>
+                setAvatarCustom({
+                  ...avatarCustom,
+                  accessory: item as AvatarProps["accessory"],
+                })
+              }
+            />
+          </>
+        ))}
+      </RadioGroup>
+    ),
   };
 
   return (
@@ -169,6 +217,8 @@ const TabsCustomAvatar = () => {
           eyes={avatarCustom.eyes}
           eyebrows={avatarCustom.eyebrows}
           facialHair={avatarCustom.facialHair}
+          clothing={avatarCustom.clothing}
+          accessory={avatarCustom.accessory}
         />
       </div>
 
@@ -194,7 +244,6 @@ const TabsCustomAvatar = () => {
               <BottomNavigationAction label="FacialHair" value={5} />
               <BottomNavigationAction label="Clothing" value={6} />
               <BottomNavigationAction label="Accessory" value={7} />
-              <BottomNavigationAction label="Hat" value={8} />
             </BottomNavigation>
           </div>
           {propAvatarCustom[value]}
