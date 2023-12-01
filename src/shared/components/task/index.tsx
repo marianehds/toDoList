@@ -1,34 +1,40 @@
 import React, { useState } from "react";
-
-import { Checkbox, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import "./task.scss";
+import { SlPencil, SlTrash, SlHeart } from "react-icons/sl";
 
 type TTask = {
-  key: number;
+  id: number; // Mudei de 'key' para 'id' para evitar conflitos com a propriedade 'key' reservada do React
   title?: string;
   description?: string;
+  onDelete: (id: number) => void;
 };
 
-export const Task = ({ key, title, description }: TTask) => {
-  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
-
-  const handleSectionClick = () => {
-    setIsCheckboxChecked(!isCheckboxChecked);
-  };
-
-  const taskClasses = isCheckboxChecked ? "task-card checked" : "task-card";
+const Task = ({ id, title, description, onDelete }: TTask) => {
+  const [heartClicked, setHeartClicked] = useState(false);
 
   return (
-    <section data-page="paper-task" onClick={handleSectionClick}>
-      <Paper className={taskClasses} variant="outlined" key={key}>
+    <section data-page="paper-task">
+      <Paper className="task-card" variant="outlined" key={id}>
         <div>
           <Typography fontSize={20} fontWeight={500}>
             {title}
           </Typography>
-
-          <Typography fontSize={14}> {description}</Typography>
+          <Typography fontSize={14}>{description}</Typography>
         </div>
-        <Checkbox className="checkbox-task" checked={isCheckboxChecked} />
+        <div className="heart">
+          <SlHeart
+            onClick={() => {
+              setHeartClicked(!heartClicked);
+            }}
+          />
+          {heartClicked && (
+            <div className="options">
+              <SlTrash size={20} onClick={() => onDelete(id)} />
+              <SlPencil size={20} />
+            </div>
+          )}
+        </div>
       </Paper>
     </section>
   );

@@ -14,6 +14,7 @@ import { useNavigate } from "react-router";
 import Avatar from "../../shared/avatar/avatar";
 
 type TTask = {
+  id: number;
   title?: string;
   description?: string;
   progress?: 1 | 2 | 3;
@@ -22,24 +23,23 @@ type TTask = {
 type TStatus = 1 | 2 | 3;
 
 const Home = () => {
-
   useEffect(() => {
     const storedTasksString = localStorage.getItem("userTasks");
-    const storedTasks: TTask[] = storedTasksString ? JSON.parse(storedTasksString) : [];
+    const storedTasks: TTask[] = storedTasksString
+      ? JSON.parse(storedTasksString)
+      : [];
     setTasks(storedTasks);
   }, []);
-  
-  const handleClickModal = () => {
-    if (task.title === undefined) {
-      setInvalidTitle(true);
-    } else {
-      const updatedTasks = [...tasks, { ...task, progress: statusNewTask }];
-      setTasks(updatedTasks);
-      localStorage.setItem("userTasks", JSON.stringify(updatedTasks));
 
-      setModalAddTask(false);
-      cleanModalFieldsModal();
-    }
+  const handleDeleteTask = (taskId: number) => {
+    // Filtra as tarefas que não têm o ID correspondente para exclusão
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+
+    // Atualiza o estado com as tarefas filtradas
+    setTasks(updatedTasks);
+
+    // Salva as tarefas atualizadas no armazenamento local
+    localStorage.setItem("userTasks", JSON.stringify(updatedTasks));
   };
 
   const navigate = useNavigate();
@@ -52,8 +52,33 @@ const Home = () => {
   const [invalidTitle, setInvalidTitle] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [tasks, setTasks] = useState<TTask[]>([]);
-  const [task, setTask] = useState<TTask>({});
+  const [task, setTask] = useState<TTask>({
+    id: 0,
+    title: "",
+    description: "",
+    progress: undefined,
+  });
+
   const [statusNewTask, setStatusNewTask] = useState<TStatus>(1);
+
+  const handleClickModal = () => {
+    if (task.title === undefined) {
+      setInvalidTitle(true);
+    } else {
+      const newTask: TTask = {
+        ...task,
+        id: tasks.length + 1, // atribuir um ID único
+        progress: statusNewTask,
+      };
+  
+      const updatedTasks = [...tasks, newTask];
+      setTasks(updatedTasks);
+      localStorage.setItem("userTasks", JSON.stringify(updatedTasks));
+  
+      setModalAddTask(false);
+      cleanModalFieldsModal();
+    }
+  };
 
   const cleanUser = () => {
     localStorage.removeItem("user");
@@ -61,12 +86,17 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    cleanUser()
+    cleanUser();
     navigate("/");
   };
 
   const cleanModalFieldsModal = () => {
-    setTask({});
+    setTask({
+      id: 0,
+      title: "",
+      description: "",
+      progress: undefined,
+    });
   };
 
   return (
@@ -109,11 +139,13 @@ const Home = () => {
             <CardContent className="card-content">
               {tasks
                 .filter((item) => item.progress === 1)
-                .map((item, key) => (
+                .map((item) => (
                   <Task
-                    key={key}
+                    key={item.id}
+                    id={item.id}
                     description={item?.description}
                     title={item.title}
+                    onDelete={handleDeleteTask}
                   />
                 ))}
             </CardContent>
@@ -146,11 +178,13 @@ const Home = () => {
             <CardContent>
               {tasks
                 .filter((item) => item.progress === 2)
-                .map((item, key) => (
+                .map((item) => (
                   <Task
-                    key={key}
+                    key={item.id}
+                    id={item.id}
                     description={item?.description}
                     title={item.title}
+                    onDelete={handleDeleteTask}
                   />
                 ))}
             </CardContent>
@@ -183,11 +217,13 @@ const Home = () => {
             <CardContent>
               {tasks
                 .filter((item) => item.progress === 3)
-                .map((item, key) => (
+                .map((item) => (
                   <Task
-                    key={key}
+                    key={item.id}
+                    id={item.id}
                     description={item?.description}
                     title={item.title}
+                    onDelete={handleDeleteTask}
                   />
                 ))}
             </CardContent>
