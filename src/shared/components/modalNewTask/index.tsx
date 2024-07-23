@@ -53,7 +53,7 @@ export const ModalNewTask = ({
 }: TModalNewTask) => {
   return (
     <section data-page="modal-new-task">
-      <Modal open={open} onClose={close}>
+      <Modal open={open} onClose={close} className="stars">
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {titleStatusNewTask[status]}
