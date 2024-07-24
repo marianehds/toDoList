@@ -42,28 +42,31 @@ const Login = () => {
 
   return (
     <section data-page="login">
-      <form className="form" onSubmit={handleSubmit}>
-        <TextField
-          value={form.name}
-          id="standard-basic"
-          label="Seu nome aqui"
-          variant="standard"
-          error={form.valid}
-          onChange={(e) => setForm({ name: e.target.value, valid: false })}
-          helperText={form.valid ? "Por favor, insira o seu nome" : ""}
-          size="medium"
-          color="secondary"
-        />
-        <Button
-          type="submit"
-          onClick={handleLogin}
-          color="secondary"
-          size="large"
-        >
-          Entrar
-        </Button>
-      </form>
+      <form className="form" onSubmit={handleSubmit} autoComplete="off">
+        <div className="box-login">
+        <span className="shooting-star"></span>
 
+          <TextField
+            value={form.name}
+            id="standard-basic"
+            label="Seu nome aqui"
+            variant="standard"
+            error={form.valid}
+            onChange={(e) => setForm({ name: e.target.value, valid: false })}
+            helperText={form.valid ? "Por favor, insira o seu nome" : ""}
+            size="medium"
+            color="secondary"
+          />
+          <Button
+            type="submit"
+            onClick={handleLogin}
+            color="secondary"
+            size="large"
+          >
+            Entrar
+          </Button>
+        </div>
+      </form>
       <ModalUserLogged
         user={userLocalStorage}
         open={isUserLogged}

@@ -20,7 +20,9 @@ const Task = ({ id, title, description, onDelete }: TTask) => {
           <Typography fontSize={20} fontWeight={500}>
             {title}
           </Typography>
-          <Typography fontSize={14}>{description}</Typography>
+          <Typography fontSize={14} color="#fff">
+            {description}
+          </Typography>
         </div>
         <div className="heart">
           <SlHeart

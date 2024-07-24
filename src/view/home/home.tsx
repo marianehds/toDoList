@@ -8,7 +8,7 @@ import { selectUser } from "../../core/redux/userSlice";
 
 import { ModalNewTask, Task } from "../../shared/components/index";
 
-import { IoIosAdd } from "react-icons/io";
+import { IoIosAdd, IoIosTrash } from "react-icons/io";
 import { Dropdown, MenuItem } from "@mui/base";
 import { useNavigate } from "react-router";
 import Avatar from "../../shared/avatar/avatar";
@@ -126,12 +126,12 @@ const Home = () => {
             <Typography
               sx={{
                 fontSize: 22,
-                boxShadow: "0 4px 2px -2px #f3ebfa;",
+                boxShadow: "0 4px 2px -2px rgb(239, 195, 230);",
                 borderRadius: "4px",
                 padding: "10px",
                 margin: "0px 10px;",
               }}
-              color="text.secondary"
+              color="HighlightText"
               gutterBottom
             >
               To do
@@ -165,12 +165,12 @@ const Home = () => {
             <Typography
               sx={{
                 fontSize: 22,
-                boxShadow: "0 4px 2px -2px #f3ebfa;",
+                boxShadow: "0 4px 2px -2px rgb(239, 195, 230);",
                 borderRadius: "4px",
                 padding: "10px",
                 margin: "0px 10px;",
               }}
-              color="text.secondary"
+              color="HighlightText"
               gutterBottom
             >
               In progress
@@ -204,12 +204,12 @@ const Home = () => {
             <Typography
               sx={{
                 fontSize: 22,
-                boxShadow: "0 4px 2px -2px #f3ebfa;",
+                boxShadow: "0 4px 2px -2px rgb(239, 195, 230);",
                 borderRadius: "4px",
                 padding: "10px",
                 margin: "0px 10px;",
               }}
-              color="text.secondary"
+              color="HighlightText"
               gutterBottom
             >
               Done
@@ -229,12 +229,22 @@ const Home = () => {
             </CardContent>
             <span className="footer-card">
               <IoIosAdd
-                size={30}
+                size={40}
                 onClick={() => {
                   setModalAddTask(true);
                   setStatusNewTask(3);
                 }}
                 className="iconPlus"
+                color="#fff"
+              />
+              <IoIosTrash
+                size={35}
+                onClick={() => {
+                  setModalAddTask(true);
+                  setStatusNewTask(3);
+                }}
+                // className="iconPlus"kc
+                color="#fff"
               />
             </span>
           </Card>

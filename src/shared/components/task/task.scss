@@ -4,13 +4,15 @@
   .task-card {
     display: flex;
     justify-content: space-between;
-    border: 1px solid rgb(239 195 230) !important;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
     padding: 10px;
     transition: background-color 0.3s ease;
+    background-color: #091a2c;
+    color: rgb(239, 195, 230);
   }
 
   :hover {
-    background-color: #f3eef7;
+    background-color: #112840;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }

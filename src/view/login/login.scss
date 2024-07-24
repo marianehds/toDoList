@@ -1,8 +1,72 @@
 [data-page="login"] {
-  .form {
+
+  .box-login {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20% auto 0 auto;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    background: #1112137d;
+    label {
+      color: #9c27b0;
+    }
+    input {
+      color: #dfbfe5;
+      text-align: center;
+    }
   }
+  .shooting-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px; /* Aumente o tamanho da estrela */
+    height: 5px; /* Aumente o tamanho da estrela */
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff; /* Aumente a sombra da estrela para mais visibilidade */
+    animation: shooting-star 6s infinite linear;
+  }
+  
+  @keyframes shooting-star {
+    0% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    10% {
+      opacity: 0.2;
+    }
+    25% {
+      transform: translateY(0) translateX(375px);
+      opacity: 1;
+    }
+    40% {
+      opacity: 0.2;
+    }
+    50% {
+      transform: translateY(165px) translateX(375px);
+    }
+    60% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.2;
+    }
+    75% {
+      transform: translateY(165px) translateX(0);
+    }
+    80% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+  
 }
