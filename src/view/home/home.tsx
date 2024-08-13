@@ -1,46 +1,40 @@
 import React, { useEffect, useState } from "react";
 import "./home.scss";
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Menu } from "@mui/base/Menu";
 
 import { useSelector } from "react-redux";
 import { selectUser } from "../../core/redux/userSlice";
 
-import { ModalNewTask, Task } from "../../shared/components/index";
+import { ModalNewTask } from "../../shared/components/index";
 
-import { IoIosAdd, IoIosTrash } from "react-icons/io";
 import { Dropdown, MenuItem } from "@mui/base";
 import { useNavigate } from "react-router";
-import Avatar from "../../shared/avatar/avatar";
-
-type TTask = {
-  id: number;
-  title?: string;
-  description?: string;
-  progress?: 1 | 2 | 3;
-};
+import CardComponent from "../../shared/components/card";
+import { TaskProps } from "../../shared/components/task/task.type";
+import { HomeLabel } from "../../shared/const/HomeLabel";
 
 type TStatus = 1 | 2 | 3;
 
 const Home = () => {
   useEffect(() => {
     const storedTasksString = localStorage.getItem("userTasks");
-    const storedTasks: TTask[] = storedTasksString
+    const storedTasks: TaskProps[] = storedTasksString
       ? JSON.parse(storedTasksString)
       : [];
     setTasks(storedTasks);
   }, []);
 
-  const handleDeleteTask = (taskId: number) => {
-    // Filtra as tarefas que não têm o ID correspondente para exclusão
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+  // const handleDeleteTask = (taskId: number) => {
+  //   // Filtra as tarefas que não têm o ID correspondente para exclusão
+  //   const updatedTasks = tasks.filter((task) => task.id !== taskId);
 
-    // Atualiza o estado com as tarefas filtradas
-    setTasks(updatedTasks);
+  //   // Atualiza o estado com as tarefas filtradas
+  //   setTasks(updatedTasks);
 
-    // Salva as tarefas atualizadas no armazenamento local
-    localStorage.setItem("userTasks", JSON.stringify(updatedTasks));
-  };
+  //   // Salva as tarefas atualizadas no armazenamento local
+  //   localStorage.setItem("userTasks", JSON.stringify(updatedTasks));
+  // };
 
   const navigate = useNavigate();
 
@@ -51,8 +45,8 @@ const Home = () => {
   const [modalAddTask, setModalAddTask] = useState(false);
   const [invalidTitle, setInvalidTitle] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [tasks, setTasks] = useState<TTask[]>([]);
-  const [task, setTask] = useState<TTask>({
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
+  const [task, setTask] = useState<TaskProps>({
     id: 0,
     title: "",
     description: "",
@@ -65,16 +59,16 @@ const Home = () => {
     if (task.title === undefined) {
       setInvalidTitle(true);
     } else {
-      const newTask: TTask = {
+      const newTask: TaskProps = {
         ...task,
         id: tasks.length + 1, // atribuir um ID único
         progress: statusNewTask,
       };
-  
+
       const updatedTasks = [...tasks, newTask];
       setTasks(updatedTasks);
       localStorage.setItem("userTasks", JSON.stringify(updatedTasks));
-  
+
       setModalAddTask(false);
       cleanModalFieldsModal();
     }
@@ -101,154 +95,27 @@ const Home = () => {
 
   return (
     <section data-page="home">
-      <div className="header">
-        <div className="header--user">
-          <div className="avatar">
-            <Avatar />
-          </div>
-          <p
-            className="header--user-name"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {name ? name : userLocalStorage}
-          </p>
-          <Dropdown open={menuOpen}>
-            <Menu className="menuProfile">
-              <MenuItem onClick={() => navigate("/profile")}>Perfil</MenuItem>
-              <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
-            </Menu>
-          </Dropdown>
-        </div>
+      <div className="user">
+        <Button
+          className="header--user-name"
+          onClick={() => setMenuOpen(!menuOpen)}
+          color="secondary"
+        >
+          {name ? name : userLocalStorage}
+        </Button>
+        <Dropdown open={menuOpen}>
+          <Menu className="menuProfile">
+            {/* <MenuItem onClick={() => navigate("/profile")}>Perfil</MenuItem> */}
+            <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
+          </Menu>
+        </Dropdown>
       </div>
-      <Grid display={"flex"} flexDirection={"row"} className="cardsTaskList">
-        <Grid item>
-          <Card className="card-toDo">
-            <Typography
-              sx={{
-                fontSize: 22,
-                boxShadow: "0 4px 2px -2px rgb(239, 195, 230);",
-                borderRadius: "4px",
-                padding: "10px",
-                margin: "0px 10px;",
-              }}
-              color="HighlightText"
-              gutterBottom
-            >
-              To do
-            </Typography>
-            <CardContent className="card-content">
-              {tasks
-                .filter((item) => item.progress === 1)
-                .map((item) => (
-                  <Task
-                    key={item.id}
-                    id={item.id}
-                    description={item?.description}
-                    title={item.title}
-                    onDelete={handleDeleteTask}
-                  />
-                ))}
-            </CardContent>
-            <span className="footer-card">
-              <IoIosAdd
-                size={30}
-                onClick={() => {
-                  setModalAddTask(true);
-                  setStatusNewTask(1);
-                }}
-              />
-            </span>
-          </Card>
-        </Grid>
-        <Grid item>
-          <Card className="card-toDo">
-            <Typography
-              sx={{
-                fontSize: 22,
-                boxShadow: "0 4px 2px -2px rgb(239, 195, 230);",
-                borderRadius: "4px",
-                padding: "10px",
-                margin: "0px 10px;",
-              }}
-              color="HighlightText"
-              gutterBottom
-            >
-              In progress
-            </Typography>
-            <CardContent>
-              {tasks
-                .filter((item) => item.progress === 2)
-                .map((item) => (
-                  <Task
-                    key={item.id}
-                    id={item.id}
-                    description={item?.description}
-                    title={item.title}
-                    onDelete={handleDeleteTask}
-                  />
-                ))}
-            </CardContent>
-            <span className="footer-card">
-              <IoIosAdd
-                size={30}
-                onClick={() => {
-                  setModalAddTask(true);
-                  setStatusNewTask(2);
-                }}
-              />
-            </span>
-          </Card>
-        </Grid>
-        <Grid item>
-          <Card className="card-toDo">
-            <Typography
-              sx={{
-                fontSize: 22,
-                boxShadow: "0 4px 2px -2px rgb(239, 195, 230);",
-                borderRadius: "4px",
-                padding: "10px",
-                margin: "0px 10px;",
-              }}
-              color="HighlightText"
-              gutterBottom
-            >
-              Done
-            </Typography>
-            <CardContent>
-              {tasks
-                .filter((item) => item.progress === 3)
-                .map((item) => (
-                  <Task
-                    key={item.id}
-                    id={item.id}
-                    description={item?.description}
-                    title={item.title}
-                    onDelete={handleDeleteTask}
-                  />
-                ))}
-            </CardContent>
-            <span className="footer-card">
-              <IoIosAdd
-                size={40}
-                onClick={() => {
-                  setModalAddTask(true);
-                  setStatusNewTask(3);
-                }}
-                className="iconPlus"
-                color="#fff"
-              />
-              <IoIosTrash
-                size={35}
-                onClick={() => {
-                  setModalAddTask(true);
-                  setStatusNewTask(3);
-                }}
-                // className="iconPlus"kc
-                color="#fff"
-              />
-            </span>
-          </Card>
-        </Grid>
+      <Grid className="grid-cards">
+        {HomeLabel.map((item) => (
+          <Grid item sm={4} key={item}>
+            <CardComponent title={item} task={tasks} />
+          </Grid>
+        ))}
       </Grid>
 
       <ModalNewTask

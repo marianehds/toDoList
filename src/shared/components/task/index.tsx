@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { Paper, Typography } from "@mui/material";
-import "./task.scss";
+import "./index.scss";
 import { SlPencil, SlTrash, SlHeart } from "react-icons/sl";
+import { TaskProps } from "./task.type";
 
-type TTask = {
-  id: number; // Mudei de 'key' para 'id' para evitar conflitos com a propriedade 'key' reservada do React
-  title?: string;
-  description?: string;
-  onDelete: (id: number) => void;
-};
 
-const Task = ({ id, title, description, onDelete }: TTask) => {
+const Task = ({ id, title, description }: TaskProps) => {
   const [heartClicked, setHeartClicked] = useState(false);
 
   return (
@@ -32,7 +27,9 @@ const Task = ({ id, title, description, onDelete }: TTask) => {
           />
           {heartClicked && (
             <div className="options">
-              <SlTrash size={20} onClick={() => onDelete(id)} />
+              <SlTrash size={20} 
+              // onClick={() => onDelete(id)} 
+              />
               <SlPencil size={20} />
             </div>
           )}

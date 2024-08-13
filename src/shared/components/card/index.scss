@@ -1,0 +1,45 @@
+[data-component="card-component"] {
+  &.card {
+    background: #1e36526e linear-gradient(45deg, #0000009a, transparent);
+    width: 25vw;
+    height: 60vh;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #fff;
+    color: #fff;
+    header {
+      box-shadow: 0 4px 2px -2px #f3ebfa;
+      padding: 10px;
+      p {
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+      }
+    }
+
+    footer {
+      box-shadow: 0 -4px 2px -2px #f3ebfa;
+      position: absolute;
+      bottom: 0;
+      width: -webkit-fill-available;
+      display: flex;
+      justify-content: space-between;
+      padding: 4px;
+      :hover {
+        cursor: pointer;
+      }
+      .iconPlus {
+        animation: pulsePlus 2s infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes pulsePlus {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
